@@ -1,128 +1,189 @@
-#include <iostream>
+#include "Chess.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+
+
+//costruttore
+/*
+	*
+	* Configurazione iniziale scacchiera
+
+	8 TCADRACT
+	7 PPPPPPPP
+	6
+	5
+	4
+	3
+	2 pppppppp
+	1 tcadract
+	  ABCDEFGH
+
+
+	  dove
+	  P pedone
+	  T torre
+	  C cavallo
+	  A alfiere
+	  D regina
+	  R re
+	  ---
+	  MAIUSCOLE --- PEZZI NERI
+	  minuscole --- pezzi bianchi
+
+	  inizia il bianco
+	*/
+
+/*
+* 
+* indici per la nostra matrice
+* 
+*	bianchi minuscoli
+* 
+*   0 tcadract
+	1 pppppppp
+	2
+	3
+	4
+	5
+	6 PPPPPPPP
+	7 TCADRACT
+	  01234567
+	  ABCDEFGH
+
+	  neri
+
+
+	quindi è come se la scacchiera fosse vista dall'altra parte
+	con i numeri delle righe diminuiti di 1
+
+
+*/
+Chess::Chess() {
+	//inizializziamo il booleano turno a 0
+	//significa che è il turno del bianco
+	turno = 0;
+
+
+
+	//inizialmente, per pulire la scacchiera char
+	//tutte le righe dalla 6 alla 3
+	//che hanno indice da 2 a 5
+	//verranno settate a ' ' 
+
+	for (int riga = 2; riga <= 5; riga++) {
+		for (int colonna = 0; colonna < 8; colonna++) {
+			scacchiera[riga][colonna] = ' ';
+		}
+	}
+
+
+
+	//mettiamo i pedoni bianchi (p) nella riga 2
+	//che ha numero 6
+	for (int col = 0; col < 8; col++) {
+		scacchiera[1][col] = 'p';	//pedoni bianchi
+	}
+
+	//mettiamo i pedoni neri (P) nella riga 7
+	//che ha numero 1
+	for (int col = 0; col < 8; col++) {
+		scacchiera[6][col] = 'P';	//pedoni neri P
+	}
+
+	//facciamo la riga 1, che ha indice 0
+	//pezzi bianchi in minuscolo
+
+	//due torri bianche, riga 1 con indice 0
+	scacchiera[0][0] = 't';
+	scacchiera[0][7] = 't';
+
+	//due cavalli bianchi
+	scacchiera[0][1] = 'c';
+	scacchiera[0][6] = 'c';
+
+	//due alfieri bianchi
+	scacchiera[0][2] = 'a';
+	scacchiera[0][5] = 'a';
+
+	//regina bianca
+	scacchiera[0][3] = 'd';
+
+	//re bianco
+	scacchiera[0][4] = 'r';
+
+	//--- fine pezzi bianchi
+	// 
+	// 
+	//mettiamo riga 8 di pezzi neri
+	//che ha indice 0
+
+	//pezzi neri in MAIUSCOLO
+
+	//due torri nere, riga 1 con indice 7
+	scacchiera[7][0] = 'T';
+	scacchiera[7][7] = 'T';
+
+	//due cavalli neri
+	scacchiera[7][1] = 'C';
+	scacchiera[7][6] = 'C';
+
+	//due alfieri neri
+	scacchiera[7][2] = 'A';
+	scacchiera[7][5] = 'A';
+
+	//regina nera
+	scacchiera[7][3] = 'D';
+
+	//re nero
+	scacchiera[7][4] = 'R';
+
+
+
+	//in teoria ho finito la costruzione
+	//della scacchiera con matrice char
+
+
+
+	//------------------ ZONA TEST ------------------
+	//inizializziamo due pedoni perchè si
+	Pedone ped1(1, 'A');
+
+
+
+
+
+	
+}	//fine  costruttore
+
+
+
+void Chess::stampa() {
+	//per stampare come vogliono le istruzioni le righe vanno stampate
+	//in ordine decrescente seguendo la numerazione della nostra matrice
+	
+	int riga;
+	int colonna;
+
+	//scorrimento di riga
+	for (riga = 7; riga >= 0 ; riga--) {  
+
+
+		//per stampare le righe a fianco della scacchiera
+		cout << (riga+1) << " ";	
+
+
+		//scorrimento di colonne, lungo la riga prestabilita
+		for (colonna = 0; colonna < 8; colonna++) {
+			cout << scacchiera[riga][colonna] ;
+		}
+		
+		//arrivati a fine riga si va a capo
+		cout << endl ;
+
+
+	}
+	//finito di stampare la scacchiera stampiamo 
+	//le lettere che denominano le colonne
+	cout << endl;
+	cout << "  ABCDEFGH" << endl << endl;
+
 }
-
-//chess.cpp
-/*
-    matrice char [8] [8] --- per stampare a schermo
-
-    pezzi contraddistinti da classi per gestire le loro caratteristiche
-
-    riga---numero
-    colonna --- lettera
-
-
-    //es. torrre in A1 all'inizio
-    int riga = 1;
-    char colonna = A;
-
-    riga++;
-
-
-    --
-    es.
-    classe pedone, ed è l'oggetto pedone che si muove
-    riga++;
-
-    classe pedone, però è la classe scacchiera che lo muove
-    pedone.setRiga(ecc...)
-
-
-
-
-
-
-*/
-
-
-/*
-//gestione file
-
-scacchiera.cpp --- main    --- gestisce argomenti da riga di comando
-
-chess.cpp --- gestisce scacchiera e inizializza pezzi vari
-
-pedone.cpp
-torre.cpp
-cavaliere.cpp
-alfiere.cpp
-regina.cpp
-re.cpp
-
-pedone.h
-torre.h
-cavaliere.h
-alfiere.h
-regina.h
-re.h
-
-
-
-
-
-
-*/
-
-/*
-    in ogni classe di un pezzo
-
-    dati sulla posizione
-        riga
-        colonna
-
-    metodi per ottenere e modificare posizione
-
-
-    //es alfiere
-    bool metodo move(int riga, char colonna) {
-        
-        //controlla che la posizione data sia in diagonale 
-        //e non occupata da uno dei suoi pezzi
-
-        //se ciò è rispettato si può muovere e ritorna true
-        //se non può farlo ritorna false
-
-
-
-
-    }
-
-
-    //chiamata del metodo move
-
-    while (! pedone.move(posizione dove deve andare)) {
-        //ritenta
-    }
-
-    //è riuscito a fare una mossa
-
-
-
-
-*/
-
-
-/*
-replay.cpp
-
-e sotto file
-
-
-ogni mossa che facciamo la scriviamo nel log 
-
-es
-pedone da A2 a A3
-
-A2 A3
-A3 A4
-A4 A5
-
-
-xx
-
-
-
-*/
