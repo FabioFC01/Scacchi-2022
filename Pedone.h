@@ -17,12 +17,13 @@ private:
 	bool primaMossa;
 
 
+
 public:
 	//costruttore
-	Pedone(int rig, char col);
+	Pedone(int rig, int col, bool color);
 
 	//override del metodo move
-	bool move (int r, char c) override;
+	bool move (int r, int c) override;
 
 };
 

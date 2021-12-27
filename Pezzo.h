@@ -27,20 +27,52 @@ class Pezzo {
 	*/
 
 private:
+
+	/*
+		nella classe Pezzo :
+			riga sarà l'indice delle righe della matrice (da 0 a 7)
+			colonna sarà la stessa cosa (da 0 a 7)
+
+
+			es. B7 ---> riga (7-1) = 6
+						colonna B --> 1
+
+
+				A	0
+				B	1
+				C	2
+				D	3
+				E	4
+				F	5
+				G	6
+				H	7
+
+
+	
+	*/
 	//per la posizione del pezzo
 	int riga;
-	char colonna;
+	int colonna;
+
+	//0 per i bianchi
+	//1 per i neri
+	bool colore;
+		
+
+
 
 
 public:
 	//per avere la posizione
 	void setRiga(int r);
-	void setColonna(char c);
+	void setColonna(int c);
+	void setColore(bool b);
 
 	//per ottenere la posizione
 	int getRiga() { return riga; }
-	char getColonna() { return colonna; }
-
+	int getColonna() { return colonna; }
+	bool getColore() { return colore; }
+	bool dentroScacchiera(int rig, int col);
 
 
 
@@ -64,9 +96,15 @@ public:
 		        l'alfiere può solo muoversi per le diagonali 
 				ecc...)
 	*/
-	 virtual bool move(int r, char c) = 0;
+	 virtual bool move(int r, int c) = 0;
 	//che poi questa funzione la faccio virtuale pura
 	//oppure no? boh idk
+
+
+
+
+
+	 
 
 
 };

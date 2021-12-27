@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Chess.h"
+#include "ChessBoard.h"
 
 using namespace std;
 
@@ -7,12 +7,15 @@ int main()
 {
 
     //formazione scacchiera
-    Chess scacchi;
+    ChessBoard scacchi;
 
     scacchi.stampa();
 
 
+    scacchi.sceltaPartita();
 
+
+    scacchi.partita();
 
 
 

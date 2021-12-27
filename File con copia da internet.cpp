@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 #include <vector>
@@ -33,6 +34,7 @@ struct ChessBoard {
     map<Pos, Piece>& moverPieces() { return turn == Turn::white ? white_pieces : black_pieces; }
     map<Pos, Piece>& opponentPieces() { return turn == Turn::white ? black_pieces : white_pieces; }
 
+
     void reset() {
         turn = Turn::white;
         white_pieces.clear();
@@ -64,6 +66,9 @@ struct ChessBoard {
         return true;
     }
 
+
+    //funzione che ritorna vettore con le posizioni dove un pezzo
+    //può muoversi data la pos. di partenza
     vector<Pos> possibleMoves(const Pos& from) {
         vector<Pos> moves;
         auto isOwn = [&](int dx, int dy) -> bool { return moverPieces().count(Pos(from, dx, dy)); };
@@ -129,6 +134,8 @@ struct ChessBoard {
         return moves;
     }
 
+
+    //stampa la scacchiera
     void printBoard() {
         static map<Piece, char> sprites =
         { {Piece::white_pawn,'P'}, {Piece::black_pawn,'P'}, {Piece::rook,'H'}, {Piece::knight,'F'},
@@ -161,6 +168,7 @@ struct ChessBoard {
     }
 
     /* False to exit */
+/*
     bool promptInput() {
         string move;
     illegalmove:
@@ -264,6 +272,8 @@ map<ChessBoard::Piece, int> ChessBoard::pieceValues{ {ChessBoard::Piece::king, 1
 {ChessBoard::Piece::queen, 9}, {ChessBoard::Piece::black_pawn, 1}, {ChessBoard::Piece::white_pawn, 1},
 {ChessBoard::Piece::bishop, 3},{ChessBoard::Piece::knight, 3},{ChessBoard::Piece::rook, 5}, };
 
+
+//main
 main() {
     ChessBoard game;
     cout << endl << "* Chesscomputer v.0.1" << endl;
@@ -300,3 +310,30 @@ main() {
     }
     return 0;
 }
+
+*/
+
+
+
+/*
+//si inizializza mettendo negli argomenti prima la riga e poi la colonna
+    //es. C1 ---> 0 ; 2
+    struct Pos {
+        //valori della posizione
+        int riga;
+        int colonna;
+
+        //costruttori
+        Pos(const Pos& p, int rigaMove = 0, int colonnaMove = 0) { *this = p; riga += rigaMove; colonna += colonnaMove; }
+        Pos(int _riga, int _col) { colonna = _col; riga = _riga; }
+        //due operatori di confronto
+        //bool operator<(const Pos& p) const { return (x < p.x) || (x == p.x && y < p.y); }
+        bool operator==(const Pos& p) const { return riga == p.riga && colonna == p.colonna; }
+        //costruttore di default
+        Pos() { riga = -1; colonna = -1; }
+    };
+
+
+
+
+*/
