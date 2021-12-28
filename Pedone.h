@@ -22,8 +22,10 @@ public:
 	//costruttore
 	Pedone(int rig, int col, bool color);
 
-	//override del metodo move
-	bool move (int r, int c) override;
+	//metodo move della classe Pezzo modificato
+	//Non c'è override
+	bool move (int r, int c, bool cattura);
+
 
 };
 

@@ -227,6 +227,11 @@ void ChessBoard::sceltaPartita() {
 
 //metodo principale che gestisce la partita giocatore - pc
 void ChessBoard::partita_0() {
+	//condizione iniziale, diventerà true con il termine della partita
+	scaccoMatto = false;
+
+
+
 
 
 
@@ -237,5 +242,6 @@ void ChessBoard::partita_0() {
 
 //gestione della partita pc - pc
 void  ChessBoard::partita_1() {
+	scaccoMatto = false;
 
 }

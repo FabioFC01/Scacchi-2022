@@ -36,7 +36,8 @@ Pedone::Pedone(int rig, int col, bool color) {
 //i neri in ordine decrescente di righe
 
 //rig e col designano le coordinate di arrivo
-bool Pedone::move(int rig, int col) {
+//cattura = true se con questo spostamento posso catturare un pezzo avversario
+bool Pedone::move(int rig, int col, bool cattura) {
 
 	int spostRighe = rig - getRiga(); //spostamento lungo le righe (in alto e in basso)
 	int spostColonne = col - getColonna(); //spostamento lungo le colonne (dx/sx)
@@ -58,18 +59,26 @@ bool Pedone::move(int rig, int col) {
 
 		}
 		//se lo spostamento lungo le righe è di uno in alto
-		if (spostRighe == 1) {
+		if (spostRighe == 1 && spostColonne == 0) {
 			setRiga(rig);
 			return true;
+		}
+		//le due mosse laterali che si possono fare solo se puoi catturare un pezzo avversario
+		if (cattura && ((spostRighe==1 && spostColonne == 1) || (spostRighe == 1 && spostColonne == -1)) ) {
+			setRiga(rig);
+			setColonna(col);
+
+			if (primaMossa) { primaMossa = false; }
+
+			return true;
+
 		}
 		else {
 			//fallimento nello spostamento
 			//c'è ovviamente ancora da mettere il mangiare gli altri
 			//l'en passant
 			//il pedone che diventa altro
-			//penso ci sia da mettere un argomento aggiuntivo
-			//per dirgli che in quella posizione può mangiare qualcosa
-			//così capisce che può spostarsi in diagonale
+			
 			return false;
 		}
 
@@ -85,10 +94,22 @@ bool Pedone::move(int rig, int col) {
 
 			return true;	//successo
 		}
-		if (spostRighe == -1) {
+		//mossa di 1 in avanti
+		if (spostRighe == -1 && spostColonne == 0) {
 			setRiga(rig);
 			return true;
 		}
+		//le due mosse laterali che si possono fare solo se puoi catturare un pezzo avversario
+		if (cattura && ((spostRighe == -1 && spostColonne == 1) || (spostRighe == -1 && spostColonne == -1))) {
+			setRiga(rig);
+			setColonna(col);
+
+			if (primaMossa) { primaMossa = false; }
+
+			return true;
+
+		}
+
 		else {
 			//vedi note nel caso del pedone bianco
 			return false;

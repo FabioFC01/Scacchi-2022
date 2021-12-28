@@ -83,22 +83,29 @@ public:
 	//se dovesse essere possibile farlo allora la muove e ritorna true
 	//sennò ritorna false e non muove nulla
 	/*
-		però non sono sicurissimo di sta cosa
-		cioè se da una parte questo metodo della classe di un pezzo (derivata 
+		Se da una parte questo metodo della classe di un pezzo (derivata 
 		dalla classe Pezzo) deve capire se è possibile spostarsi lì seguendo le regole 
 		di spostamento di tale pezzo, dall'altra parte pure la classe Chess deve controllare che 
 		sia possibile spostarsi lì (ad es. non puoi spostare un tuo pezzo in una tale posizione se 
 		facendo tale movimento metti il tuo stesso re sotto scacco).
-		Quindi immagino che la classe Chess debba fare dei controlli sulle conseguenze di tale spostamento
+		La classe Chess deve fare dei controlli sulle conseguenze di tale spostamento
 		sulla partita mentre la classe del pezzo chiamata in causa con questo metodo move deve cercare 
 		di capire se è possibile spostare il pezzo guardando soltanto alle sue regole di spostamento
 		(ad es. la torre può fare solo movimenti in alto/basso/dx/sx  
 		        l'alfiere può solo muoversi per le diagonali 
 				ecc...)
 	*/
+	
 	 virtual bool move(int r, int c) = 0;
 	//che poi questa funzione la faccio virtuale pura
-	//oppure no? boh idk
+	//oppure no? boh idk 
+	//per ora virtuale pura
+	 //da notare che la classe Pedone non ha implementato questa mossa ma ha
+	 //un metodo move alternativo con bool cattura
+	 //questo perchè il pedone è l'unico pezzo che quando deve catturare
+	 //un pezzo avversario può muoversi non seguendo le sue regole convenzionali
+	 //ovvero spostandosi in diagonale
+	 //ma per gli altri pezzi bisogna fare l'override del metodo move
 
 
 

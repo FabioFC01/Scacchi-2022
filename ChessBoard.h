@@ -76,6 +76,8 @@ private:
 	//inizializzato a false, diventa true se si verifica la situazione di scacco matto
 	bool scaccoMatto;
 
+
+
 public:
 	ChessBoard();	//costruttore
 
