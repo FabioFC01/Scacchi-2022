@@ -20,11 +20,11 @@ private:
 
 public:
 	//costruttore
-	Pedone(int rig, int col, bool color);
+	Pedone(const int rig, const int col, const bool color);
 
 	//metodo move della classe Pezzo modificato
 	//Non c'è override
-	bool move (int r, int c, bool cattura);
+	bool move (const int r, const int c, const bool cattura);
 
 
 };

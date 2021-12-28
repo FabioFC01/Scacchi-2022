@@ -64,15 +64,15 @@ private:
 
 public:
 	//per avere la posizione
-	void setRiga(int r);
-	void setColonna(int c);
-	void setColore(bool b);
+	void setRiga(const int r);
+	void setColonna(const int c);
+	void setColore(const bool b);
 
 	//per ottenere la posizione
-	int getRiga() { return riga; }
-	int getColonna() { return colonna; }
-	bool getColore() { return colore; }
-	bool dentroScacchiera(int rig, int col);
+	int getRiga() const { return riga; }
+	int getColonna() const { return colonna; }
+	bool getColore() const { return colore; }
+	bool dentroScacchiera(const int rig, const int col);
 
 
 
@@ -96,7 +96,7 @@ public:
 				ecc...)
 	*/
 	
-	 virtual bool move(int r, int c) = 0;
+	 virtual bool move(const int r, const int c) = 0;
 	//che poi questa funzione la faccio virtuale pura
 	//oppure no? boh idk 
 	//per ora virtuale pura

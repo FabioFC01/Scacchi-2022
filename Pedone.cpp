@@ -2,7 +2,7 @@
 
 
 //costruttore della classe pedonei
-Pedone::Pedone(int rig, int col, bool color) {
+Pedone::Pedone(const int rig, const int col, const bool color) {
 	
 	//inizializziamo la var. booleana a true
 	primaMossa = true;
@@ -37,7 +37,7 @@ Pedone::Pedone(int rig, int col, bool color) {
 
 //rig e col designano le coordinate di arrivo
 //cattura = true se con questo spostamento posso catturare un pezzo avversario
-bool Pedone::move(int rig, int col, bool cattura) {
+bool Pedone::move(const int rig, const int col, const bool cattura) {
 
 	int spostRighe = rig - getRiga(); //spostamento lungo le righe (in alto e in basso)
 	int spostColonne = col - getColonna(); //spostamento lungo le colonne (dx/sx)

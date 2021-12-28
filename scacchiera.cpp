@@ -159,4 +159,10 @@ xx
 //-------------------------------------------------------------------------------
 //APPUNTI VARI
 //https://www.codeproject.com/Articles/1214018/Chess-Console-Game-in-Cplusplus
+// 
+// 
+// https://codereview.stackexchange.com/questions/173656/chess-game-in-c
+// 
+// 
+// https://www.linkedin.com/pulse/writing-simple-chess-engine-c-baran-can-%C3%B6ner-cfa/
 //link con idee carine da prendere direi
