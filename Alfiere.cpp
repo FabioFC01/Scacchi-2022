@@ -139,5 +139,8 @@ std::vector<Casella> Alfiere::getCaselleIntermedie(const Casella inizio, const C
 		return cas;
 	}
 
+	//se sei qui il comando è errato
+	return std::vector<Casella>();
+
 	
 }

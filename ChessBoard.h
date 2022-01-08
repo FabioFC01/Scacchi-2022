@@ -21,6 +21,8 @@
 #include "Mossa.h"
 #include "Casella.h"
 
+#include "Exception.h"
+
 
 using namespace std;
 

@@ -249,5 +249,8 @@ std::vector<Casella> Regina::getCaselleIntermedie(const Casella inizio, const Ca
 		return cas;
 	}
 
+	//se sei qui il comando è errato
+	return std::vector<Casella>();
+
 
 }

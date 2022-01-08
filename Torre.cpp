@@ -148,4 +148,7 @@ std::vector<Casella> Torre::getCaselleIntermedie(const Casella inizio, const Cas
 		return cas;
 
 	}
+
+	//se sei qui il comando è errato
+	return std::vector<Casella>();
 }
