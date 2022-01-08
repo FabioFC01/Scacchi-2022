@@ -5,18 +5,28 @@ using namespace std;
 
 int main()
 {
-
+    
     //formazione scacchiera
+
+
     ChessBoard scacchi;
 
     scacchi.stampa();
 
+    
 
-    scacchi.sceltaPartita();
+
+    //scacchi.sceltaPartita();
 
 
-    scacchi.partita();
+    //ad es una delle due
+    //scacchi.partita_1();
 
+
+    scacchi.partita_2();
+    
+
+   
 
 
 
@@ -165,4 +175,12 @@ xx
 // 
 // 
 // https://www.linkedin.com/pulse/writing-simple-chess-engine-c-baran-can-%C3%B6ner-cfa/
+// 
+// 
+// mooolto interressante
+// https://www.geeksforgeeks.org/design-a-chess-game/
+// 
+// https://inst.eecs.berkeley.edu/~cs162/sp07/Nachos/chess.shtml
+// 
+// 
 //link con idee carine da prendere direi

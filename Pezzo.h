@@ -1,6 +1,13 @@
 #ifndef PEZZO_H
 #define PEZZO_H
 
+
+#include "Casella.h"
+#include "Mossa.h"
+
+#include <vector>
+
+
 class Pezzo {
 	//classe di un pezzo casuale
 	//le classi del pedone, torre, regina ecc...
@@ -50,29 +57,45 @@ private:
 
 	
 	*/
-	//per la posizione del pezzo
-	int riga;
-	int colonna;
+	
 
-	//0 per i bianchi
-	//1 per i neri
+	//1 per i bianchi
+	//0 per i neri
 	bool colore;
+
+
+	//simbolo char da stampare a video
+	//che rappresenta il pezzo
+	char simbolo;
+
+
 		
 
 
 
 
 public:
-	//per avere la posizione
-	void setRiga(const int r);
-	void setColonna(const int c);
+	//setta il colore
+	//1 per i bianchi, 0 per i neri
 	void setColore(const bool b);
-
-	//per ottenere la posizione
-	int getRiga() const { return riga; }
-	int getColonna() const { return colonna; }
 	bool getColore() const { return colore; }
+
+
 	bool dentroScacchiera(const int rig, const int col);
+
+	//metodi per i simboli dei pezzi
+	//bianchi minuscoli, neri maiuscoli
+	char getSimbolo() const { return simbolo; }
+	void setSimbolo(const char c) { simbolo = c; }
+
+
+	//metodo per dare le posizioni intermedie tra la casella di inizio e di fine
+	//dello spostamento
+	virtual std::vector<Casella> getCaselleIntermedie(const Casella inizio, const Casella fine) = 0;
+	
+
+
+
 
 
 
@@ -96,16 +119,8 @@ public:
 				ecc...)
 	*/
 	
-	 virtual bool move(const int r, const int c) = 0;
-	//che poi questa funzione la faccio virtuale pura
-	//oppure no? boh idk 
-	//per ora virtuale pura
-	 //da notare che la classe Pedone non ha implementato questa mossa ma ha
-	 //un metodo move alternativo con bool cattura
-	 //questo perchè il pedone è l'unico pezzo che quando deve catturare
-	 //un pezzo avversario può muoversi non seguendo le sue regole convenzionali
-	 //ovvero spostandosi in diagonale
-	 //ma per gli altri pezzi bisogna fare l'override del metodo move
+	 virtual bool move(const Casella inizio, const Casella arrivo, const bool cattura) = 0;
+	
 
 
 

@@ -2,29 +2,19 @@
 
 //implementiamo i vari metodi della classe Pezzo
 
-void Pezzo::setColonna(const int c) {
-	//non metto controlli 
-	//dovrei metterli?
 
-	colonna = c;
-}
 
-void Pezzo::setRiga(const int r) {
-	//non metto controlli 
-	//dovrei metterli?
-
-	riga = r;
-}
-
+//1 per i bianchi, 0 per i neri
 void Pezzo::setColore(const bool b) {
 	colore = b;
 }
 
-
-bool Pezzo::move(int r, int c) {
+/*
+bool Pezzo::move(const Casella inizio, const Casella arrivo, const bool cattura) {
 
 	return true;
 }
+*/
 
 bool Pezzo::dentroScacchiera(const int rig, const int col) {
 	if ((rig <= 7 && rig >= 0) && (col <= 7 && col >= 0)) {

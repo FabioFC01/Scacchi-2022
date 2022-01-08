@@ -2,8 +2,26 @@
 #define CHESSBOARD_H
 
 #include <iostream>
+#include <string>
+#include <vector>
+
+
 #include "Pezzo.h"
+
 #include "Pedone.h"
+#include "Re.h"
+#include "Regina.h"
+#include "Cavallo.h"
+#include "Alfiere.h"
+#include "Torre.h"
+
+
+
+#include "Player.h"
+#include "Mossa.h"
+#include "Casella.h"
+
+
 using namespace std;
 
 class ChessBoard {
@@ -51,8 +69,13 @@ class ChessBoard {
 
 private:
 	//scacchiera dove metteremo i pezzi segnati da lettere
+	// utile per la stampa
 	//          [ riga ]  [ colonna ]
-	char scacchiera[8][8];
+	char scacchiera_char[8][8];
+
+
+	//scacchiera con i puntatori a superclasse
+	Pezzo* scacchiera[8][8];
 
 
 	//0 per partita giocatore - pc
@@ -63,8 +86,8 @@ private:
 
 	//valore booleano per capire di chi è il turno
 	/*
-	* turno = 0 significa che è il turno del bianco, deve fare la mossa lui
-	* turno = 1 significa che è il turno del nero, deve fare la mossa lui
+	* turno = 0 significa che è il turno del bianco
+	* turno = 1 significa che è il turno del nero
 	* 
 	* viene inizializzato con valore 0, in quanto per regolamento il primo a fare la mossa è il bianco
 	
@@ -83,6 +106,18 @@ public:
 
 
 
+	void resetScacchiera();
+
+	Pezzo* getPezzo(int rig, int col) const;
+
+
+
+
+	//funzione di chiamata per il move
+	bool call(Pezzo* pez, const Casella inizio, const Casella arrivo, const bool cattura);
+
+
+
 
 	void sceltaPartita();
 
@@ -96,8 +131,25 @@ public:
 	void partita_1();
 
 
+
+
+	//metodo che dopo toglierò 
+	//partita giocatore-giocatore
+	void partita_2();
+
+
 	//metodo stampa
-	void stampa();
+	void stampa() const;
+
+
+	//metodo per chiedere al giocatore umano l'input per la mossa
+	Mossa input();
+
+
+	//metodo per controllare che l'input per il movimento sia corretto
+	//es. B1 C3 è un corretto comando, deve avere la coordinata di partenza
+	//e quella di arrivo
+	bool inputCorretto(const Mossa &prossimaMossa);
 
 
 

@@ -4,6 +4,8 @@
 #include "Pezzo.h"
 #include <iostream>
 
+#include <vector>
+
 using namespace std;
 
 class Pedone : public Pezzo {
@@ -16,16 +18,25 @@ private:
 	//dopo la prima mossa questo valore sarà sempre false
 	bool primaMossa;
 
+	
+
+
 
 
 public:
 	//costruttore
-	Pedone(const int rig, const int col, const bool color);
+	Pedone(const bool color);
 
-	//metodo move della classe Pezzo modificato
-	//Non c'è override
-	bool move (const int r, const int c, const bool cattura);
+	//metodo move della classe Pezzo
+	bool move (const Casella inizio, const Casella arrivo, const bool cattura) override;
 
+
+	std::vector<Casella> getCaselleIntermedie(const Casella inizio, const Casella fine) override;
+
+
+
+
+	
 
 };
 
