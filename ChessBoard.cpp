@@ -532,7 +532,7 @@ void ChessBoard::partita_2() {
 Pezzo* ChessBoard::getPezzo(int rig, int col) const {
 	//se la casella scelta è fuori dalla scacchiera
 	if (rig < 0 || rig > 7 || col < 0 || col > 7) {
-		throw new exception("error: out of bounds");
+		throw new Exception("error: out of bounds");
 	}
 
 	return scacchiera[rig][col];
