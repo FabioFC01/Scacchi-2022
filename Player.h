@@ -23,7 +23,10 @@ private:
 public:
 	//costruttore di default 
 	//non usarlo
-	Player () {}
+	Player () {
+		bianco = false;
+		umano = false;
+	}
 
 
 	//costruttore
@@ -52,6 +55,13 @@ public:
 	//arg. true per umano
 	//arg. false per pc
 	void setUmano (const bool um) { umano = um; }
+
+
+	/*
+		ritorna true se il Player è umano
+		false altrimenti
+	*/
+	bool getUmano() const { return umano; }
 
 
 

@@ -25,3 +25,7 @@ bool Pezzo::dentroScacchiera(const int rig, const int col) {
 		return false;
 	}
 }
+
+void Pezzo::setCatturato(const bool c) {
+	catturato = c;
+}
