@@ -28,6 +28,10 @@ public:
 	//metodo getCaselleIntermedie della classe Pezzo
 	std::vector<Casella> getCaselleIntermedie(const Casella inizio, const Casella fine) override;
 
+	//metodo che da tutte le posizioni in qui si può spostare immaginando una scacchiera vuota
+	std::vector<Casella> mossePezzo(const Casella inizio) override;
+
+
 
 
 

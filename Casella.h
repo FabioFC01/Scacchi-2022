@@ -95,6 +95,15 @@ public:
 
 	}
 
+	bool casellaValida(const int riga, const int col) {
+		//se almeno uno dei due parametri è fuori ritorna false
+		if (riga < 0 || riga > 7 || colonna < 0 || colonna > 7) {
+			return false;
+		}
+		//altrimenti ritorna vero
+		return true;
+	}
+
 
 
 

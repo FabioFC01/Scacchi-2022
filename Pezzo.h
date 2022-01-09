@@ -5,7 +5,10 @@
 #include "Casella.h"
 #include "Mossa.h"
 
+
 #include <vector>
+
+
 
 
 class Pezzo {
@@ -69,6 +72,13 @@ private:
 	char simbolo;
 
 
+	//valore booleano che indica se il pezzo
+	// è stato catturato
+	//viene inizializzato a false
+	//nel caso in cui il pezzo venga catturato diventa true
+	bool catturato;
+
+
 		
 
 
@@ -78,7 +88,14 @@ public:
 	//setta il colore
 	//1 per i bianchi, 0 per i neri
 	void setColore(const bool b);
+
+	//1 per i bianchi, 0 per i neri
 	bool getColore() const { return colore; }
+
+	//metodi per il pezzo attivo
+	void setCatturato(const bool c);
+	//1 se è stato catturato, 0 altrimenti
+	bool getCatturato() const { return catturato; }
 
 
 	bool dentroScacchiera(const int rig, const int col);
@@ -92,6 +109,11 @@ public:
 	//metodo per dare le posizioni intermedie tra la casella di inizio e di fine
 	//dello spostamento
 	virtual std::vector<Casella> getCaselleIntermedie(const Casella inizio, const Casella fine) = 0;
+
+
+	//metodo virtuale che, data una casella di partenza, dà un elenco di posizioni 
+	//nelle quali il pezzo può spostarsi (considerando una scacchiera vuota)
+	virtual std::vector<Casella> mossePezzo(const Casella inizio) = 0;
 	
 
 
@@ -103,22 +125,7 @@ public:
 	//METODO MOVE
 	//metodo più importante, quello per muovere il pezzo
 	//deve fare il controllo che sia possibile far tale mossa
-	//se dovesse essere possibile farlo allora la muove e ritorna true
-	//sennò ritorna false e non muove nulla
-	/*
-		Se da una parte questo metodo della classe di un pezzo (derivata 
-		dalla classe Pezzo) deve capire se è possibile spostarsi lì seguendo le regole 
-		di spostamento di tale pezzo, dall'altra parte pure la classe Chess deve controllare che 
-		sia possibile spostarsi lì (ad es. non puoi spostare un tuo pezzo in una tale posizione se 
-		facendo tale movimento metti il tuo stesso re sotto scacco).
-		La classe Chess deve fare dei controlli sulle conseguenze di tale spostamento
-		sulla partita mentre la classe del pezzo chiamata in causa con questo metodo move deve cercare 
-		di capire se è possibile spostare il pezzo guardando soltanto alle sue regole di spostamento
-		(ad es. la torre può fare solo movimenti in alto/basso/dx/sx  
-		        l'alfiere può solo muoversi per le diagonali 
-				ecc...)
-	*/
-	
+	// immaginando che il pezzo si muova in una scacchiera vuota
 	 virtual bool move(const Casella inizio, const Casella arrivo, const bool cattura) = 0;
 	
 

@@ -26,6 +26,11 @@ public:
 	//metodo che ridà le caselle in una mossa
 	std::vector<Casella> getCaselleIntermedie(const Casella inizio, const Casella fine) override;
 
+	//metodo che da tutte le posizioni dove si può spostare l'alfiere data la casella di partenza
+	//immaginando la scacchiera vuota
+	std::vector<Casella> mossePezzo(const Casella inizio) override;
+
+
 
 
 

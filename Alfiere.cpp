@@ -3,6 +3,7 @@
 using namespace std;
 Alfiere::Alfiere(const bool color) {
 	setColore(color);
+	setCatturato(false);
 
 	//bianco
 	if (getColore()) {
@@ -12,6 +13,8 @@ Alfiere::Alfiere(const bool color) {
 	else {
 		setSimbolo('A');
 	}
+
+
 
 
 
@@ -125,7 +128,7 @@ std::vector<Casella> Alfiere::getCaselleIntermedie(const Casella inizio, const C
 
 		std::vector<Casella> cas;
 
-		while (r < rigArrivo && c < colArrivo) {
+		while ((r != rigArrivo) && (c != colArrivo)) {
 			//inserimento della casella nel vector
 			Casella temp(r, c);
 			cas.push_back(temp);
@@ -143,4 +146,90 @@ std::vector<Casella> Alfiere::getCaselleIntermedie(const Casella inizio, const C
 	return std::vector<Casella>();
 
 	
+}
+
+
+//override del metodo mossePezzo
+std::vector<Casella> Alfiere::mossePezzo(const Casella inizio) {
+
+	std::vector<Casella> cas;
+
+	//dati di partenza
+	int rigaInizio = inizio.getRiga();
+	int colonnaInizio = inizio.getColonna();
+
+	//indice di spostamento (è un valore da aggiungere agli indici di riga e colonna)
+	int spost = 1;
+
+
+	//spostamento in alto a dx  (entrambi gli indici aumentano)
+	Casella temp(rigaInizio + spost, colonnaInizio + spost);
+
+
+
+	//finchè la casella è dentro la scacchiera
+	while (temp.setColonna(colonnaInizio + spost) && temp.setRiga(rigaInizio + spost)) {
+		//aggiunta al vector
+		cas.push_back(temp);
+		//incremento
+		spost++;
+		//nuova casella
+		temp.setColonna(colonnaInizio + spost);
+		temp.setRiga(rigaInizio + spost);
+
+	}
+
+	//spostamento in alto a sx  (riga aumenta, colonna diminuisce)
+	spost = 1;
+	temp.setColonna(colonnaInizio - spost);
+	temp.setRiga(rigaInizio + spost);
+
+	while (temp.setColonna(colonnaInizio - spost) && temp.setRiga(rigaInizio + spost)) {
+		//aggiunta al vector
+		cas.push_back(temp);
+		//incremento
+		spost++;
+		//nuova casella
+		temp.setColonna(colonnaInizio - spost);
+		temp.setRiga(rigaInizio + spost);
+
+	}
+
+	//spostamento in basso a sx (entrambi gli indici diminuiscono)
+	spost = 1;
+	temp.setColonna(colonnaInizio - spost);
+	temp.setRiga(rigaInizio - spost);
+
+	while (temp.setColonna(colonnaInizio - spost) && temp.setRiga(rigaInizio - spost)) {
+		//aggiunta al vector
+		cas.push_back(temp);
+		//incremento
+		spost++;
+		//nuova casella
+		temp.setColonna(colonnaInizio - spost);
+		temp.setRiga(rigaInizio - spost);
+
+	}
+
+	//spostamento in basso a dx (riga diminuisce, colonna aumenta)
+	spost = 1;
+	temp.setColonna(colonnaInizio + spost);
+	temp.setRiga(rigaInizio - spost);
+
+	while (temp.setColonna(colonnaInizio + spost) && temp.setRiga(rigaInizio - spost)) {
+		//aggiunta al vector
+		cas.push_back(temp);
+		//incremento
+		spost++;
+		//nuova casella
+		temp.setColonna(colonnaInizio + spost);
+		temp.setRiga(rigaInizio - spost);
+
+	}
+
+	//ritorna il vector con le varie posizioni
+	return cas;
+
+
+
 }

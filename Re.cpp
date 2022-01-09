@@ -3,6 +3,8 @@
 //costruttore
 Re::Re(const bool color) {
 	setColore(color);
+	setCatturato(false);
+
 
 	//bianco
 	if (getColore()) {
@@ -58,5 +60,73 @@ bool Re::move(const Casella inizio, const Casella arrivo, const bool cattura) {
 std::vector<Casella> Re::getCaselleIntermedie(const Casella inizio, const Casella fine) {
 
 	return vector<Casella> ();
+
+}
+
+//metodo che da tutte le posizioni dove si può spostare il re data la casella di partenza
+	//immaginando la scacchiera vuota
+std::vector<Casella> Re::mossePezzo(const Casella inizio) {
+	
+	std::vector<Casella> cas;
+
+	int rigaInizio = inizio.getRiga();
+	int colonnaInizio = inizio.getColonna();
+
+	//alto a dx
+	Casella temp(rigaInizio + 1, colonnaInizio + 1);
+
+	if (temp.setRiga(rigaInizio + 1) && temp.setColonna(colonnaInizio + 1)) {
+		cas.push_back(temp);
+	}
+
+	//alto 
+	temp.setColonna(colonnaInizio);
+	if (temp.setRiga(rigaInizio + 1) && temp.setColonna(colonnaInizio)) {
+		cas.push_back(temp);
+	}
+
+	//alto a sx
+	temp.setColonna(colonnaInizio - 1);
+	if (temp.setRiga(rigaInizio + 1) && temp.setColonna(colonnaInizio - 1)) {
+		cas.push_back(temp);
+	}
+
+	//sx
+	temp.setRiga(rigaInizio);
+	if (temp.setRiga(rigaInizio) && temp.setColonna(colonnaInizio - 1)) {
+		cas.push_back(temp);
+	}
+
+	//basso a sx
+	temp.setRiga(rigaInizio - 1);
+	if (temp.setRiga(rigaInizio - 1) && temp.setColonna(colonnaInizio - 1)) {
+		cas.push_back(temp);
+	}
+
+	//basso
+	temp.setColonna(colonnaInizio);
+	if (temp.setRiga(rigaInizio - 1) && temp.setColonna(colonnaInizio)) {
+		cas.push_back(temp);
+	}
+
+	//basso a dx
+	temp.setColonna(colonnaInizio + 1);
+	if (temp.setRiga(rigaInizio - 1) && temp.setColonna(colonnaInizio + 1)) {
+		cas.push_back(temp);
+	}
+
+	//dx
+	temp.setRiga(rigaInizio);
+	if (temp.setRiga(rigaInizio) && temp.setColonna(colonnaInizio + 1)) {
+		cas.push_back(temp);
+	}
+
+	//-----
+	//ritorna
+	return cas;
+
+
+
+
 
 }

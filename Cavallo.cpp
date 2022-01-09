@@ -3,6 +3,8 @@
 //costruttore
 Cavallo::Cavallo(const bool color) {
 	setColore(color);
+	setCatturato(false);
+
 
 	//bianco
 	if (getColore()) {
@@ -103,5 +105,80 @@ bool Cavallo::move(const Casella inizio, const Casella arrivo, const bool cattur
 std::vector<Casella> Cavallo::getCaselleIntermedie(const Casella inizio, const Casella fine)
 {
 	return std::vector<Casella> ();
+
+}
+
+//metodo che da tutte le posizioni dove si può spostare il cavallo data la casella di partenza
+	//immaginando la scacchiera vuota
+std::vector<Casella> Cavallo::mossePezzo(const Casella inizio) {
+
+	std::vector<Casella> cas;
+
+	//dati di partenza
+	int rigaInizio = inizio.getRiga();
+	int colonnaInizio = inizio.getColonna();
+
+	//ci sono 8 movimenti possibili
+
+	//1
+	Casella temp(rigaInizio + 2, colonnaInizio + 1);
+	if (temp.setRiga(rigaInizio + 2) &&  temp.setColonna(colonnaInizio + 1)) {
+		cas.push_back(temp);
+	}
+
+	//2
+	temp.setRiga(rigaInizio + 2);
+	temp.setColonna(colonnaInizio - 1);
+	if (temp.setRiga(rigaInizio + 2) && temp.setColonna(colonnaInizio - 1)) {
+		cas.push_back(temp);
+	}
+
+	//3
+	temp.setRiga(rigaInizio + 1);
+	temp.setColonna(colonnaInizio + 2);
+	if (temp.setRiga(rigaInizio + 1) && temp.setColonna(colonnaInizio + 2)) {
+		cas.push_back(temp);
+	}
+
+	//4
+	temp.setRiga(rigaInizio + 1);
+	temp.setColonna(colonnaInizio - 2);
+	if (temp.setRiga(rigaInizio + 1) && temp.setColonna(colonnaInizio - 2)) {
+		cas.push_back(temp);
+	}
+
+	//5
+	temp.setRiga(rigaInizio - 1);
+	temp.setColonna(colonnaInizio + 2);
+	if (temp.setRiga(rigaInizio - 1) && temp.setColonna(colonnaInizio + 2)) {
+		cas.push_back(temp);
+	}
+
+	//6
+	temp.setRiga(rigaInizio - 1);
+	temp.setColonna(colonnaInizio - 2);
+	if (temp.setRiga(rigaInizio - 1) && temp.setColonna(colonnaInizio - 2)) {
+		cas.push_back(temp);
+	}
+
+	//7
+	temp.setRiga(rigaInizio - 2);
+	temp.setColonna(colonnaInizio + 1);
+	if (temp.setRiga(rigaInizio - 2) && temp.setColonna(colonnaInizio + 1)) {
+		cas.push_back(temp);
+	}
+
+	//8
+	temp.setRiga(rigaInizio - 2);
+	temp.setColonna(colonnaInizio - 1);
+	if (temp.setRiga(rigaInizio - 2) && temp.setColonna(colonnaInizio - 1)) {
+		cas.push_back(temp);
+	}
+
+
+	//ritorna il vettore
+	return cas;
+
+
 
 }
