@@ -1,0 +1,47 @@
+GUIDA A CMAKE
+Vuoi avere un comodo e funzionante cmake direttamente a casa tua? Segui i semplici passi indicati qua sotto e la tua vita diventerà più facile! 
+1. Installare cmake
+ 'sudo apt install cmake' da riga di comando
+2. Usare cmake
+2a. Creazione File 
+Per usare cmake si deve innanzitutto creare un file nominato ESATTAMENTE CMakeLists.txt nella directory del progetto che volete compilare ed eseguire con cmake. Se, ad esempio, abbiamo un progetto "chess" con al suo interno file e directory varie dovremmo qui creare il file.
+2b. Contenuto del file
+Il file deve contenere alcune righe di codice, divise in 3 blocchi:
+I) Righe di default
+II) Creazione Librerie
+III) Creazione eseguibile e linkaggio librerie
+
+I) Il codice di default è il seguente (scritto all'inizio):
+cmake_minimun_required(VERSION 3.2)
+
+project(nome_progetto)
+II) Le librerie si aggiungono come segue:
+add_library(nome_libreria
+file.h
+file.cpp //eseguibile del .h
+) 
+Andare a capo non è necessario, ma è più leggibile così. 
+Attenzione: per far sì che ciò funzioni i .h e i .cpp devono essere scritti con il loro percorso completo partendo da dove si trova il file di cmake.
+Esempio:
+Nella mia dir "chess" costruisco il CMakeFile.txt ed ho due cartelle, una con tutti i .h (detta "fileH") e una con tutti i .cpp (detta "fileCPP"). Per far sì che tutto funzioni le righe di codice dovranno essere
+add_library(nome_libreria
+fileH/file.h
+fileCPP/file.cpp //eseguibile del .h
+)
+III) Per aggiungere un eseguibile (qui il file lo chiamiamo Pippo, corrisponde al Pippo di "g++ - o Pippo Pippo.cpp):
+add_esecutable(Pippo
+file.cpp //eseguibile
+)
+Come sopra per la questione dell'andare a capo
+Per far sì che l'eseguibile Pippo abbia accesso alle librerie:
+target_link_libraries(Pippo
+Libreria1
+Libreria2
+...
+)
+2c. Compilare ed eseguire
+Per far sì che ora il progetto parta si devono scrivere tre semplici righe di comando (sincerandosi di essere nella directory giusta, nel caso "chess"):
+1)cmake .
+2)make all
+3)./nome_eseguile
+(quest'ultima è uguale alla compilazione normale da terminale)
